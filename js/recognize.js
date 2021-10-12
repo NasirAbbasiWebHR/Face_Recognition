@@ -6,9 +6,7 @@ Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri("/Face_Recognition/models"),
   faceapi.nets.ageGenderNet.loadFromUri("/Face_Recognition/models"),
 ])
-  .then(() =>
-    Emitter.emit(Events.NOTIFICATION, { loading: "Modules Loading...." })
-  )
+  .then(() => Emitter.emit(Events.ERROR, { error: "Modules Loading...." }))
   .catch((error) => {
     Emitter.emit(Events.ERROR, { error: "Errors loading models" });
   });
