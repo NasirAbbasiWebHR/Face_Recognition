@@ -4,7 +4,11 @@ Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
   faceapi.nets.faceExpressionNet.loadFromUri("/models"),
   faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
-]).then(() => console.log("Face API is ready!"));
+])
+  .then(() => console.log("Face API is ready!"))
+  .catch((error) => {
+    Emitter.emit(Events.ERROR, { error: "Errors loading models" });
+  });
 
 let data = {};
 let interval;
